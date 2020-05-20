@@ -1,0 +1,9 @@
+**This project is a gesture based unlocker which can send an unlock signal based on a gesture password**
+
+The project video can be found at the link
+
+https://1drv.ms/v/s!AgwDbPHOOydOjqsGgRsUqK2a86ZLXA?e=p1yyuz
+
+https://drive.google.com/file/d/1rg39qTIASqK38lpADNBwh3Z4PxED7u8-/view?usp=sharing
+
+The `/Gesture_Unlock/src/main.cpp` file is the main file of the project with the main code. The detection of the gesture is handles by the file `/Gesture_Unlock/include/detect/detect.h`. The `/Gesture_Unlock/include/detect/timer.h` file provides interrupts from the TC3 timer counter to the detect.h file. These interrupts are used to reset the detection sequence if for some case a partial gesture is recorded which can halt the program from recording the desired gesture and may also lead to recording of a wrong gesture. The communication with the accelerometer (ISM330DLC) is handles by the library `/Gesture_Unlock/.pio/libdeps/adafruit_feather_m0/ISM330DLC`. This library is designed after the Adafruit_LSM6DS library for same accelerometer. The custom library only consists of functions and variables only designed to communicate with the accelerometer of the ISM330DLC and with nothing else. The directory `/Gesture_Unlock/.pio/libdeps/adafruit_feather_m0/` also contains various other libraries on which the the ISM330DLC library and the display depend. The other libraries have also been stripped of all other files not pertaining to the project. The library `/Gesture_Unlock/.pio/libdeps/adafruit_feather_m0/FlashStorage` helps to store the recorded gesture variable to the Internal flash of the SAMD21 on the Feather M0. Storing the recorded password gesture on the Internal flash of the SAMD21 ensures that recorded password is not lost when the board is powered down. The recorded password is only erased when the board is flashed with a new program.
